@@ -42,11 +42,21 @@ Telerik.Web.UI.Editor.CommandList["InsertSitecoreLink"] = function (commandName,
 
     scEditor = editor;
 
+    //bug #96285
+    var dialogContentContainer = window.document.querySelector('.scDialogContentContainer');
+    var clientHeight = dialogContentContainer.clientHeight;
+    var maxDialogHeight = Math.min(700, clientHeight);
+
+    var clientWidth = dialogContentContainer.clientWidth;
+    var maxDialogWidth = Math.min(1100, clientWidth);
+
+  //bug #96285
+
     editor.showExternalDialog(
         "/sitecore/shell/default.aspx?xmlcontrol=RichText.InsertLink&la=" + scLanguage + "&fo=" + id + (scDatabase ? "&databasename=" + scDatabase : ""),
         null, //argument
-        1100,
-        700,
+        maxDialogWidth,  // bug #96285
+        maxDialogHeight, //bug #96285
         scInsertSitecoreLink, //callback
         null, // callback args
         "Insert Link",
@@ -180,11 +190,21 @@ Telerik.Web.UI.Editor.CommandList["InsertSitecoreMedia"] = function (commandName
 
     scEditor = editor;
 
+    //bug #96285
+    var dialogContentContainer = window.document.querySelector('.scDialogContentContainer');
+    var clientHeight = dialogContentContainer.clientHeight;
+    var maxDialogHeight = Math.min(700, clientHeight);
+
+    var clientWidth = dialogContentContainer.clientWidth;
+    var maxDialogWidth = Math.min(1105, clientWidth);
+
+  //bug #96285
+
     editor.showExternalDialog(
         "/sitecore/shell/default.aspx?xmlcontrol=RichText.InsertImage&la=" + scLanguage + (id ? "&fo=" + id : "") + (scDatabase ? "&databasename=" + scDatabase : ""),
         null, //argument
-        1105,
-        700,
+        maxDialogWidth,  //bug #96285
+        maxDialogHeight, //bug #96285
         scInsertSitecoreMedia,
         null,
         "Insert Media",
